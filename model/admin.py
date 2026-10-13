@@ -1,8 +1,12 @@
+from validation.admin_validation import AdminValidation
+
+
 class Admin:
-    def __init__(self, admin_id, name, age, user_name, password):
+    def __init__(self, admin_id: str, name: str, age: int, national_code: str, user_name: str, password: str):
         self.admin_id = admin_id
         self.name = name
         self.age = age
+        self.national_code = national_code
         self.user_name = user_name
         self.password = password
 
@@ -13,15 +17,17 @@ class Admin:
 
     @admin_id.setter
     def admin_id(self, value):
+        value = AdminValidation.admin_id_validate(value)
         self.__admin_id = value
 
     # name
     @property
     def name(self):
-        return self.__name + " hello "
+        return self.__name
 
     @name.setter
     def name(self, value):
+        value = AdminValidation.name_validate(value)
         self.__name = value
 
     #  age
@@ -31,7 +37,17 @@ class Admin:
 
     @age.setter
     def age(self, value):
+        value = AdminValidation.age_validate(value)
         self.__age = value
+
+    @property
+    def national_code(self):
+        return self.__national_code
+
+    @national_code.setter
+    def national_code(self, value):
+        value = AdminValidation.national_code_validate(value)
+        self.__national_code = value
 
     # user_name
     @property
@@ -40,6 +56,7 @@ class Admin:
 
     @user_name.setter
     def user_name(self, value):
+        value = AdminValidation.user_name_validate(value)
         self.__user_name = value
 
     # password
@@ -49,6 +66,7 @@ class Admin:
 
     @password.setter
     def password(self, value):
+        value = AdminValidation.password_validate(value)
         self.__password = value
 
     # user

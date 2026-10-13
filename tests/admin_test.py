@@ -1,10 +1,4 @@
 from model.admin import Admin
-
-admin_1 = Admin("2132154" ,  "mohmmad hosein" , 25 , "Moh8998" , "123456")
-
-print(admin_1.name)
-print(admin_1.age)
-
-
-
-
+import re
+admin_1 = Admin("1234568f6", "mohmmad hosein", 20, "0022613013"
+                , "Moh-123", "Mo123456#")
