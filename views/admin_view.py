@@ -1,5 +1,5 @@
 from tkinter import END
-from controller.user_controller import UserControl
+from controller.admin_controller import AdminController
 from model.view import View
 
 
@@ -7,7 +7,7 @@ def run():
     win = View()
     my_input_list = ["admin_id", "name", "age", "controller", "user name", "password"]
 
-    controller = UserControl()
+    controller = AdminController()
 
 
 

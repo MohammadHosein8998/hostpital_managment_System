@@ -1,13 +1,8 @@
 
+from app import App
 
 
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
 
-
-
-
-
-
-from view.admin_view import run
-
-if __name__=="__main__":
-    run()
