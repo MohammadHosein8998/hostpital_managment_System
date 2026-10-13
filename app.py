@@ -11,7 +11,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("hospital management")
+        self.title("Hospital Management System")
         self.geometry("1100x650")
         self.minsize(800, 600)
 

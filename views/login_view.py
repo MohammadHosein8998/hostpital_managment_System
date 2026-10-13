@@ -1,6 +1,5 @@
-
-
 import tkinter as tk
+from idlelib.colorizer import color_config
 from tkinter import ttk
 
 
@@ -16,12 +15,16 @@ class LoginView(ttk.Frame):
             font=("Arial", 20, "bold")
         ).pack(pady=30)
 
-        ttk.Label(self, text="Username").pack()
+        ttk.Label(self, text="Username", font=("Arial", 14, "bold")).pack()
+
+        style = ttk.Style()
+        style.theme_use("clam")
+        style.configure('TButton', width=20, borderwidth=1, focusthickness=3, focuscolor='none')
 
         self.username_entry = ttk.Entry(self)
         self.username_entry.pack(pady=5)
 
-        ttk.Label(self, text="Password").pack()
+        ttk.Label(self, text="Password", font=("Arial", 14, "bold")).pack()
 
         self.password_entry = ttk.Entry(self, show="*")
         self.password_entry.pack(pady=5)
@@ -44,5 +47,7 @@ class LoginView(ttk.Frame):
             self.controller.show_frame("DashboardView")
         else:
             self.error_label.config(
-                text="Invalid username or password!"
+                text="Invalid username or password!",
+                background="red",
+                font=("Arial", 10)
             )
