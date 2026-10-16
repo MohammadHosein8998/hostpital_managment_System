@@ -4,6 +4,7 @@ import tkinter.ttk as ttk
 from views.login_view import LoginView
 from views.dashboard_view import DashboardView
 from views.patient_view import PatientView
+from views.test import TestView
 
 
 class App(tk.Tk):
@@ -22,7 +23,7 @@ class App(tk.Tk):
         container = ttk.Frame(self)
         container.pack(fill="both", expand=True)
 
-        for PageClass in (LoginView, DashboardView, PatientView):
+        for PageClass in (LoginView, DashboardView, PatientView , TestView):
             page = PageClass(container, self)
             self.frame[PageClass.__name__] = page
 
@@ -31,7 +32,7 @@ class App(tk.Tk):
         container.rowconfigure(0, weight=1)
         container.columnconfigure(0, weight=1)
 
-        self.show_frame("LoginView")
+        self.show_frame("TestView")
 
     def show_frame(self, page_name):
         """نمایش صفحه موردنظر"""

@@ -1,37 +1,36 @@
 from tkinter import Button, Label, Entry, Tk, IntVar, StringVar, messagebox, ttk
 
 
-class View:
+class View(ttk.Frame):
 
-    def __init__(self):
-        self.window = Tk()
-        self.window.geometry("1200x450")
-        self.window.title("User Management")
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+        self.controller = controller
         self.var_dic = {}
 
-    def mainloop(self):
-        self.window.mainloop()
+    # def mainloop(self):
+    #     self.window.mainloop()
 
     def draw_int_input(self, text: str = "default", x: int = 20, y: int = 20, ex: int = 0, ey: int = 0):
         var_label = IntVar()
-        Label(self.window, text=str(text)).place(x=x, y=y)
-        Entry(self.window, textvariable=var_label).place(x=x + 100, y=y)
+        ttk.Label(self, text=str(text)).place(x=x, y=y)
+        ttk.Entry(self, textvariable=var_label).place(x=x + 100, y=y)
         self.var_dic[text] = var_label
 
     def draw_str_input(self, text: str = "default", x: int = 20, y: int = 20):
         var_label = StringVar()
-        Label(self.window, text=str(text)).place(x=x, y=y)
-        Entry(self.window, textvariable=var_label).place(x=x + 100, y=y)
+        ttk.Label(self, text=str(text)).place(x=x, y=y)
+        ttk.Entry(self, textvariable=var_label).place(x=x + 100, y=y)
         self.var_dic[text] = var_label
 
     def draw_button(self, command, text="default", width: int = 7, x: int = 20, y: int = 20):
-        Button(self.window, text=str(text), width=width, command=command).place(x=x, y=y)
+        ttk.Button(self, text=str(text), width=width, command=command).place(x=x, y=y)
 
     def get_res_dic(self):
         return {key: value.get() for key, value in self.var_dic.items()}
 
     def draw_table(self, x: int, y: int, columns: int, show: str = "headings"):
-        table = ttk.Treeview(self.window, columns=tuple(range(1, columns + 1)), show="headings")
+        table = ttk.Treeview(self, columns=tuple(range(1, columns + 1)), show="headings")
         table.place(x=x, y=y)
         return table
 
