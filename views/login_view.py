@@ -1,13 +1,14 @@
 import tkinter as tk
 from idlelib.colorizer import color_config
 from tkinter import ttk
+from model.view import View
 
 
-class LoginView(ttk.Frame):
+
+class LoginView(View):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        super().__init__(parent , controller)
 
-        self.controller = controller
 
         ttk.Label(
             self,

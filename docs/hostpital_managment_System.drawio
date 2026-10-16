@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="1GlLI7-1VNYEyihp0_9T">
-    <mxGraphModel dx="1642" dy="2080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="969" dy="1678" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -81,7 +81,7 @@
         <mxCell id="Cah8QW-vBAzXMY_lX33f-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneFillColor=default;" value="Visit" vertex="1">
           <mxGeometry height="160" width="160" x="380" y="-220" as="geometry" />
         </mxCell>
-        <mxCell id="Cah8QW-vBAzXMY_lX33f-11" parent="Cah8QW-vBAzXMY_lX33f-10" style="text;strokeColor=#d79b00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;&quot;&gt;# visit_id: int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+&amp;nbsp;appointment_id&amp;nbsp;: int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+&amp;nbsp;diagnosis&amp;nbsp;: string&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;&quot;&gt;+ doctor_notes: date&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+ appointment_ttime : date&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;status : str&lt;/span&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="Cah8QW-vBAzXMY_lX33f-11" parent="Cah8QW-vBAzXMY_lX33f-10" style="text;strokeColor=#d79b00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;&quot;&gt;# visit_id: int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+&amp;nbsp;appointment_id&amp;nbsp;: int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+&amp;nbsp;diagnosis&amp;nbsp;: string&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;&quot;&gt;+ doctor_notes:&amp;nbsp;&lt;/span&gt;string&lt;div&gt;&lt;span style=&quot;&quot;&gt;+ appointment_time : date&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;+ status : str&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="104" width="160" y="26" as="geometry" />
         </mxCell>
         <mxCell id="Cah8QW-vBAzXMY_lX33f-13" parent="Cah8QW-vBAzXMY_lX33f-10" style="text;strokeColor=#d79b00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ create_report ()" vertex="1">

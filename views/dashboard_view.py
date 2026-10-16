@@ -3,12 +3,13 @@
 
 from tkinter import ttk
 
+from model.view import View
 
-class DashboardView(ttk.Frame):
+
+class DashboardView(View):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        super().__init__(parent , controller)
 
-        self.controller = controller
 
         ttk.Label(
             self,
@@ -20,6 +21,12 @@ class DashboardView(ttk.Frame):
             self,
             text="Manage Patients",
             command=lambda: controller.show_frame("PatientView")
+        ).pack(pady=10)
+
+        ttk.Button(
+            self,
+            text="Manage Physicians",
+            command=lambda: controller.show_frame("PhysicianٰView")
         ).pack(pady=10)
 
         ttk.Button(
