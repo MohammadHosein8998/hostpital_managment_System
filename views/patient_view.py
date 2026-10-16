@@ -1,4 +1,4 @@
-from importlib.metadata import pass_none
+
 from tkinter import ttk
 
 from model.view import View
