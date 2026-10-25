@@ -61,4 +61,3 @@ class PatientDataAccess:
         file.close()
         patient = list(filter( lambda x : x.national_code == national_code, self.__patient_list))
         return patient[0]
-

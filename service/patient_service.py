@@ -16,6 +16,9 @@ class PatientService:
     def update_patient_by_national_code(self, national_code: str, patient_data: Patient):
         self.__patient_data_access.update_patient_by_national_code(national_code, patient_data)
 
+    def delete_patient_by_national_code(self, national_code: str):
+        self.__patient_data_access.delete_patient_by_national_code(national_code)
+
     def get_patient_by_national_code(self, national_code: str):
         patient = self.__patient_data_access.get_patient_by_national_code(national_code)
         return patient

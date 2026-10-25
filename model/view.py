@@ -49,6 +49,5 @@ class View(ttk.Frame):
 
     def set_selected_values(self, selected_item):
         edited_item = list(self.var_dic.keys()).copy()
-        edited_item.remove("password")
         for key, value in zip(edited_item, selected_item):
             self.var_dic[key].set(value)

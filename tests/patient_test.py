@@ -132,7 +132,14 @@ class TestPatientService(unittest.TestCase):
         self.assertEqual(self.sample, patient)
 
 
+############################################
+#           patient controller test        #
+############################################
 
+
+class TestPatientController(unittest.TestCase):
+    def setUp(self):
+        pass
 
 
 if __name__ == "__main__":
