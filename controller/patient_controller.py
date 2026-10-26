@@ -28,8 +28,8 @@ class PatientController:
         (name, family, national_code, birth_date, phone_number) = patient.values()
 
         birth_date = jdatetime.datetime.strptime(birth_date, '%Y-%m-%d').date().togregorian()
-
-        new_patient = Patient(PatientController.patient_id + 1, name, family, national_code, birth_date, phone_number)
+        PatientController.patient_id = PatientController.patient_id + 1
+        new_patient = Patient(PatientController.patient_id , name, family, national_code, birth_date, phone_number)
 
         return new_patient
 
@@ -43,17 +43,22 @@ class PatientController:
     def update(self, patient_data):
         patient = self.make_new_patient(patient_data)
         self.__patient_service.update_patient_by_national_code(patient.national_code , patient)
+        return f"patient with national code {patient.national_code} updated successfully."
 
     @Error_handler
     def delete(self, patient_data):
         patient = self.make_new_patient(patient_data)
         self.__patient_service.delete_patient_by_national_code(patient.national_code)
+        return f"patient with national code {patient.national_code} deleted successfully."
+
 
     @Error_handler
     def find_by_national_code(self, patient_data):
         patient = self.make_new_patient(patient_data)
         self.__patient_service.get_patient_by_national_code(patient.national_code)
+        return patient
 
-
+    @Error_handler
     def find_all(self):
-        self.__patient_service.get_all_patients()
+        patients = self.__patient_service.get_all_patients()
+        return patients
