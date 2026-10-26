@@ -15,26 +15,25 @@ class PatientView(View):
         self.show_data_on_the_table()
 
     def show_data_on_the_table(self):
-        success , patient_list = self.patient_c.find_all()
-
+        success, patient_list = self.patient_c.find_all()
 
         if success:
             for item in self.patient_table.get_children():
                 self.patient_table.delete(item)
             for patient in patient_list:
-                self.patient_table.insert("", END, values=tuple(patient.values()))
-
+                self.patient_table.insert("", END, values=patient.values())
 
     def select_patient(self, event_info):
         row_id = self.patient_table.focus()
-        selected_item = self.patient_table.item(row_id, "values")
+        selected_item = list(self.patient_table.item(row_id, "values"))
+        selected_item.pop(0)
         self.set_selected_values(selected_item)
 
     def save_patient(self) -> None:
         patient = self.get_res_dic()
         success, response = self.patient_c.save(patient)
         if success:
-            self.patient_table.insert("", END, values=tuple(patient.values()))
+            # self.patient_table.insert("", END, values=tuple(patient.values()))
             self.reset_form()
         self.show_message_box(success, response)
 
@@ -52,13 +51,11 @@ class PatientView(View):
             self.reset_form()
         self.show_message_box(success, response)
 
-
-    def __init__(self, parent , controller):
+    def __init__(self, parent, controller):
         # patient controller
         self.patient_c = PatientController()
 
         super().__init__(parent, controller)
-
 
         ttk.Label(
             self,
@@ -73,11 +70,11 @@ class PatientView(View):
         # my patient table headings
         self.patient_table = self.draw_table(300, 60, len(self.heading_list))
 
+        self.patient_table.bind("<ButtonRelease>", self.select_patient)
+
         for i in range(0, len(self.heading_list)):
             self.patient_table.heading(i + 1, text=self.heading_list[i])
             self.patient_table.column(i + 1, width=130)
-
-        self.patient_table.bind("<ButtonRelease>", self.select_patient)
 
         ttk.Button(
             self,
@@ -89,3 +86,4 @@ class PatientView(View):
         self.draw_button(text="edit", x=100, y=280, command=self.edit_patient)
         self.draw_button(text="delete", x=180, y=280, command=self.delete_patient)
 
+        self.reset_form()
