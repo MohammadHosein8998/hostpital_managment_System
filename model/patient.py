@@ -1,4 +1,6 @@
 from datetime import date
+
+import jdatetime
 from persian_tools import phone_number , national_id
 
 from model.user import User
@@ -88,7 +90,6 @@ class Patient(User):
             "phone_number": "09123456789"
         }
     ]
-
     def __init__(self, patient_id, name, family, national_code, birth_date, phone_number):
         super().__init__(name, family, national_code, birth_date)
         self.patient_id = patient_id
@@ -144,3 +145,19 @@ class Patient(User):
     def make_samples(cls):
         cls_samples = list(map( cls.make_sample, cls.samples))
         return cls_samples
+
+    def values(self):
+
+        persian_birth_date = jdatetime.datetime.fromgregorian(date=self.birth_date)
+
+        string_persian = jdatetime.datetime.strftime(persian_birth_date , "%Y-%m-%d")
+
+
+        return (
+            self.patient_id,
+            self.name,
+            self.family,
+            self.national_code,
+             string_persian,
+            self.phone_number
+        )
