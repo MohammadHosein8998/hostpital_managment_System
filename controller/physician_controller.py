@@ -31,7 +31,7 @@ class PhysicianController:
     @Error_handler
     def delete(self , physician_data):
         physician = self.__make_new_physician(physician_data)
-        self.__physician_service.delete(physician)
+        self.__physician_service.delete(physician.national_code)
         return f"doctor with name {physician.name} deleted successfully"
 
     @Error_handler
