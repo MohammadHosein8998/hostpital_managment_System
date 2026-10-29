@@ -26,7 +26,7 @@ class DashboardView(View):
         ttk.Button(
             self,
             text="Manage Physicians",
-            command=lambda: controller.show_frame("PhysicianٰView")
+            command=lambda: controller.show_frame("PhysicianView")
         ).pack(pady=10)
 
         ttk.Button(
