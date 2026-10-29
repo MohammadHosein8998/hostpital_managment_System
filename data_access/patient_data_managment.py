@@ -53,7 +53,6 @@ class PatientDataAccess:
         file = open(self.file_name , "rb")
         self.__patient_list = pickle.load(file)
         file.close()
-        print(self.__patient_list)
         return self.__patient_list
 
     def get_patient_by_national_code(self , national_code):
