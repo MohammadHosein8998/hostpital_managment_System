@@ -3,6 +3,8 @@ from datetime import date
 import jdatetime
 
 from model.user import User
+from validation import physician_validation
+from validation.physician_validation import PhysicianValidation
 
 
 class Physician(User):
@@ -18,6 +20,7 @@ class Physician(User):
 
     @doctor_id.setter
     def doctor_id(self, value):
+        PhysicianValidation.doctor_id(value)
         self.__doctor_id = value
 
     @property
@@ -26,8 +29,12 @@ class Physician(User):
 
     @license.setter
     def license(self, value):
+        PhysicianValidation.license_number(value)
         self.__license = value
 
+
+    def __repr__(self) -> str:
+        return f"Physician({self.doctor_id} , {self.name} , {self.family} , {self.national_code} , {self.birth_date} , {self.license})"
 
     def values(self):
 
