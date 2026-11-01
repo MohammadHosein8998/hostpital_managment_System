@@ -6,8 +6,8 @@ from validation.appointment_validation import AppointmentValidation
 
 
 class Appointment:
-    def __init__(self, appointment_id: int, physician_id: int, patient_id: int, appointment_date: time,
-                 appointment_time: date):
+    def __init__(self, appointment_id: int, physician_id: int, patient_id: int, appointment_date: date,
+                 appointment_time: time):
         self.appointment_id = appointment_id
         self.physician_id = physician_id
         self.patient_id = patient_id
