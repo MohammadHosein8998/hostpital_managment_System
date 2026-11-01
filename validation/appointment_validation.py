@@ -1,5 +1,5 @@
 import re
-from datetime import date
+from datetime import date, time
 
 
 class AppointmentValidation:
@@ -26,5 +26,5 @@ class AppointmentValidation:
 
     @staticmethod
     def appointment_time(value):
-        if not isinstance(value, date):
-            raise ValueError("appointment time must be a date")
+        if not isinstance(value, time):
+            raise ValueError("appointment time must be a time")
