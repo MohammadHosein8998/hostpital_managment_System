@@ -1,23 +1,23 @@
+import tkinter as tk
+from idlelib.colorizer import color_config
 from tkinter import ttk
-
 from model.view import View
-from views.login_view import LoginView
 
 
-class TestView(View):
 
-    def __init__(self , parent , controller):
+class LoginAdminView(View):
+    def __init__(self, parent, controller):
         super().__init__(parent , controller)
 
-        self.controller = controller
 
         ttk.Label(
             self,
-            text="Hospital Management System _ test",
+            text="Hospital Management System For Admin",
             font=("Arial", 20, "bold")
         ).pack(pady=30)
 
         ttk.Label(self, text="Username", font=("Arial", 14, "bold")).pack()
+
         style = ttk.Style()
         style.theme_use("clam")
         style.configure('TButton', width=20, borderwidth=1, focusthickness=3, focuscolor='none')
@@ -35,8 +35,16 @@ class TestView(View):
             text="Login",
             command=self.login
         ).pack(pady=20)
+
+        ttk.Button(
+            self,
+            text="back",
+            command=self.back
+        ).place(x=150, y=120)
+
         self.error_label = ttk.Label(self, text="")
         self.error_label.pack()
+
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
@@ -50,3 +58,7 @@ class TestView(View):
                 background="red",
                 font=("Arial", 10)
             )
+
+
+    def back(self):
+        self.controller.show_frame("LoginView")
