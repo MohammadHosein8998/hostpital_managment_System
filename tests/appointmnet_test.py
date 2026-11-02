@@ -40,9 +40,9 @@ print(appointment_data_managment.get_all_appointments())
 
 updated_meeting_time = time(12, 30, 45)
 
-appointment_1 = Appointment(1, 13, 10, meeting_date, updated_meeting_time)
+updated_appointment_1 = Appointment(1, 13, 10, meeting_date, updated_meeting_time)
 
-appointment_data_managment.update_appointment_by_appointment_id(1, appointment_1)
+appointment_data_managment.update_appointment_by_appointment_id(1, updated_appointment_1)
 
 print(appointment_data_managment.get_all_appointments())
 
@@ -61,3 +61,13 @@ appointment_data_managment.clear_data()
 appointment_service = AppointmentService()
 
 appointment_service.save(appointment_1)
+
+print(appointment_service.get_all_appointments())
+
+appointment_service.update_appointment_by_appointment_id(1,updated_appointment_1)
+
+print(appointment_service.get_all_appointments())
+
+print(appointment_service.get_appointment_by_appointment_id(1))
+
+
