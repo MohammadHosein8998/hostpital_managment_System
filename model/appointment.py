@@ -72,11 +72,12 @@ class Appointment:
 
         string_appointment_date = jdatetime.datetime.strftime(persian_appointment_date , "%Y-%m-%d")
 
-        # persian_appointment_time =
+        string_appointment_time = jdatetime.time.strftime(self.appointment_time , "%H:%M:%S")
 
         return (
             self.appointment_id,
             self.physician_id,
             self.patient_id,
-             string_appointment_date
+             string_appointment_date,
+            string_appointment_time
         )
