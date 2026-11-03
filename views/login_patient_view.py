@@ -1,5 +1,7 @@
 from tkinter import ttk
 
+from controller.patient_controller import PatientController
+from model.user import User
 from model.view import View
 
 
@@ -8,13 +10,15 @@ class LoginPatientView(View):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
+        self.patient_c = PatientController()
+
         ttk.Label(
             self,
             text="Patient Login",
             font=("Arial", 20, "bold")
         ).pack(pady=30)
 
-        ttk.Label(self, text="Username", font=("Arial", 14, "bold")).pack()
+        ttk.Label(self, text="Username (national code)", font=("Arial", 14, "bold")).pack()
 
         style = ttk.Style()
         style.theme_use("clam")
@@ -37,13 +41,13 @@ class LoginPatientView(View):
         ttk.Button(
             self,
             text="sign up",
-            command=self.login
-        ).place(x=800 , y=120)
+            command=self.sign_up
+        ).place(x=1000 , y=120)
 
         ttk.Button(
             self,
             text="back",
-            command= self.back
+            command= self.__back
         ).place(x=150 , y=120)
 
         self.error_label = ttk.Label(self, text="")
@@ -52,16 +56,20 @@ class LoginPatientView(View):
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-
-        # صرفاً برای تست؛ بعداً با دیتابیس جایگزین شود
-        if username == "admin" and password == "1234":
+        success , respond = self.patient_c.login(username , password)
+        if success:
             self.controller.show_frame("DashboardView")
+            self.show_message_box(success , respond)
         else:
             self.error_label.config(
-                text="Invalid username or password!",
+                text=respond,
                 background="red",
                 font=("Arial", 10)
             )
 
-    def back(self):
+
+    def __back(self):
         self.controller.show_frame("LoginView")
+
+    def sign_up(self):
+        self.controller.show_frame("SignUpView")
