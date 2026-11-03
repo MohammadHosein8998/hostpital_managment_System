@@ -7,8 +7,8 @@ from model.view import View
 
 
 class PatientView(View):
-    attributes = ["name", "family", "national_code", "birth_date", "phone_number"]
-    heading_list = ["patient_id", "name", "family", "national_code", "birth_date", "phone_number"]
+    attributes = ["name", "family", "national_code", "birth_date", "phone_number" , "password"]
+    heading_list = ["patient_id", "name", "family", "national_code", "birth_date", "phone_number" , "password"]
 
     def reset_form(self):
         super().reset_form()
@@ -26,7 +26,8 @@ class PatientView(View):
     def select_patient(self, event_info):
         row_id = self.patient_table.focus()
         selected_item = list(self.patient_table.item(row_id, "values"))
-        selected_item.pop(0)
+        if selected_item:
+            selected_item.pop(0)
         self.set_selected_values(selected_item)
 
     def save_patient(self) -> None:
@@ -82,8 +83,8 @@ class PatientView(View):
             command=lambda: controller.show_frame("DashboardView")
         ).place(x=10, y=350)
 
-        self.draw_button(text="save", x=20, y=280, command=self.save_patient)
-        self.draw_button(text="edit", x=100, y=280, command=self.edit_patient)
-        self.draw_button(text="delete", x=180, y=280, command=self.delete_patient)
+        self.draw_button(text="save", x=20, y=300, command=self.save_patient)
+        self.draw_button(text="edit", x=100, y=300, command=self.edit_patient)
+        self.draw_button(text="delete", x=180, y=300, command=self.delete_patient)
 
         self.reset_form()
