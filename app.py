@@ -8,6 +8,8 @@ from views.patient_view import PatientView
 from views.physician_view import PhysicianView
 from views.appointment_view import AppointmentView
 from views.login_view import LoginView
+from views.sign_up_view import SignUpView
+from views.admin_info_view import AdminInfoView
 
 
 class App(tk.Tk):
@@ -16,7 +18,7 @@ class App(tk.Tk):
         super().__init__()
 
         self.title("Hospital Management System")
-        self.geometry("1100x650")
+        self.geometry("1300x650")
         self.minsize(800, 600)
 
         # محل نگهداری صفحات
@@ -26,12 +28,11 @@ class App(tk.Tk):
         container = ttk.Frame(self)
         container.pack(fill="both", expand=True)
 
-        for PageClass in (LoginView , LoginAdminView , LoginPatientView, DashboardView, PatientView , PhysicianView , AppointmentView):
+        for PageClass in (LoginView, LoginAdminView, LoginPatientView, SignUpView, DashboardView, PatientView,
+                          PhysicianView, AppointmentView, AdminInfoView):
             page = PageClass(container, self)
 
             self.frame[PageClass.__name__] = page
-
-
 
             page.grid(row=0, column=0, sticky="nsew")
 
