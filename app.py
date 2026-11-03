@@ -21,6 +21,9 @@ class App(tk.Tk):
         self.geometry("1300x650")
         self.minsize(800, 600)
 
+        # متغیری برای نگهداری اطلاعات کاربر لاگین‌شده
+        self.current_user = None
+
         # محل نگهداری صفحات
         self.frame = {}
 
@@ -45,4 +48,8 @@ class App(tk.Tk):
     def show_frame(self, page_name):
         """نمایش صفحه موردنظر"""
         frame = self.frame[page_name]
+        # اگر صفحه متدی برای به‌روزرسانی داده‌ها داشت، آن را صدا می‌زنیم
+        if hasattr(frame, "on_show"):
+            frame.on_show()
+
         frame.tkraise()
