@@ -1,6 +1,8 @@
 import tkinter as tk
 from idlelib.colorizer import color_config
 from tkinter import ttk
+
+from controller.admin_controller import AdminController
 from model.view import View
 
 
@@ -9,7 +11,7 @@ class LoginAdminView(View):
     def __init__(self, parent, controller):
         super().__init__(parent , controller)
 
-
+        self.__admin_c = AdminController()
         ttk.Label(
             self,
             text="Hospital Management System For Admin",
@@ -49,12 +51,13 @@ class LoginAdminView(View):
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        # صرفاً برای تست؛ بعداً با دیتابیس جایگزین شود
-        if username == "admin" and password == "1234":
+        success , response = self.__admin_c.login(username, password)
+        if success:
+            success , self.controller.current_user = self.__admin_c.find_admin_by_user_name(username)
             self.controller.show_frame("DashboardView")
         else:
             self.error_label.config(
-                text="Invalid username or password!",
+                text=response,
                 background="red",
                 font=("Arial", 10)
             )
