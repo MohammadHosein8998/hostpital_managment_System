@@ -21,16 +21,17 @@ from utils.decorators import Error_handler
 
 class PatientController:
     patient_id = 0
+
     def __init__(self):
         self.__patient_service = PatientService()
 
-
     def __make_new_patient(self, patient):
-        (name, family, national_code, birth_date, phone_number) = patient.values()
+        (name, family, national_code, birth_date, phone_number, password) = patient.values()
 
         birth_date = jdatetime.datetime.strptime(birth_date, '%Y-%m-%d').date().togregorian()
         PatientController.patient_id += 1
-        new_patient = Patient(PatientController.patient_id , name, family, national_code, birth_date, phone_number)
+        new_patient = Patient(PatientController.patient_id, name, family, national_code, birth_date, phone_number,
+                              password)
 
         return new_patient
 
@@ -43,7 +44,7 @@ class PatientController:
     @Error_handler
     def update(self, patient_data):
         patient = self.__make_new_patient(patient_data)
-        self.__patient_service.update_patient_by_national_code(patient.national_code , patient)
+        self.__patient_service.update_patient_by_national_code(patient.national_code, patient)
         return f"patient with national code {patient.national_code} updated successfully."
 
     @Error_handler
@@ -51,7 +52,6 @@ class PatientController:
         patient = self.__make_new_patient(patient_data)
         self.__patient_service.delete_patient_by_national_code(patient.national_code)
         return f"patient with national code {patient.national_code} deleted successfully."
-
 
     @Error_handler
     def find_by_national_code(self, patient_data):
@@ -63,3 +63,15 @@ class PatientController:
     def find_all(self):
         patients = self.__patient_service.get_all_patients()
         return patients
+
+    @Error_handler
+    def sign_up(self, patient_data):
+        patient = self.__make_new_patient(patient_data)
+        self.__patient_service.save_patient_data(patient)
+
+    @Error_handler
+    def login(self, username: str, password: str):
+        patient = self.__patient_service.get_patient_by_national_code(username)
+        if not patient.login(password):
+            raise ValueError(f"Invalid username or password!")
+        return f"patient with national code {patient.national_code} logged successfully."
