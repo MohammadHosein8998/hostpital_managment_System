@@ -1,12 +1,16 @@
+from datetime import date
+
+import jdatetime
+
+from model.user import User
 from validation.admin_validation import AdminValidation
 
 
-class Admin:
-    def __init__(self, admin_id: str, name: str, age: int, national_code: str, user_name: str, password: str):
+class Admin(User):
+    def __init__(self, admin_id: int, name: str, family: str, national_code: str, birth_date: date, user_name: str,
+                 password: str):
+        super().__init__(name, family, national_code, birth_date)
         self.admin_id = admin_id
-        self.name = name
-        self.age = age
-        self.national_code = national_code
         self.user_name = user_name
         self.password = password
 
@@ -17,37 +21,8 @@ class Admin:
 
     @admin_id.setter
     def admin_id(self, value):
-        value = AdminValidation.admin_id_validate(value)
+        AdminValidation.admin_id_validate(value)
         self.__admin_id = value
-
-    # name
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, value):
-        value = AdminValidation.name_validate(value)
-        self.__name = value
-
-    #  age
-    @property
-    def age(self):
-        return self.__age
-
-    @age.setter
-    def age(self, value):
-        value = AdminValidation.age_validate(value)
-        self.__age = value
-
-    @property
-    def national_code(self):
-        return self.__national_code
-
-    @national_code.setter
-    def national_code(self, value):
-        value = AdminValidation.national_code_validate(value)
-        self.__national_code = value
 
     # user_name
     @property
@@ -56,7 +31,7 @@ class Admin:
 
     @user_name.setter
     def user_name(self, value):
-        value = AdminValidation.user_name_validate(value)
+        AdminValidation.user_name_validate(value)
         self.__user_name = value
 
     # password
@@ -66,9 +41,43 @@ class Admin:
 
     @password.setter
     def password(self, value):
-        value = AdminValidation.password_validate(value)
+        AdminValidation.password_validate(value)
         self.__password = value
+
+    def __eq__(self, other: Admin) -> bool:
+        if not isinstance(other, Admin):
+            return NotImplemented
+
+        return (
+                self.admin_id == other.admin_id
+                and self.name == other.name
+                and self.family == other.family
+                and self.national_code == other.national_code
+                and self.birth_date == other.birth_date
+                and self.password == other.password
+        )
 
     # user
     def __repr__(self):
-        return f"Admin({self.name}, {self.age}, {self.user_name}, {self.password})"
+        return f"Admin({self.name}, {self.family} , {self.national_code}, {self.birth_date}, {self.admin_id}, {self.user_name} , {self.password})"
+
+    def values(self):
+
+        persian_birth_date = jdatetime.datetime.fromgregorian(date=self.birth_date)
+
+        string_persian = jdatetime.datetime.strftime(persian_birth_date, "%Y-%m-%d")
+
+        return (
+            self.admin_id,
+            self.name,
+            self.family,
+            self.national_code,
+            string_persian,
+            self.user_name,
+            self.password
+        )
+
+    def login(self , password : str):
+        if self.password == password:
+            return True
+        return False
