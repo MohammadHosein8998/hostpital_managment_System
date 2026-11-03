@@ -10,3 +10,10 @@ class PatientValidation:
             raise TypeError('Phone Number must be a string')
         elif not phone_number.validate(phone_num):
             raise ValueError('Phone Number must be a valid phone number')
+
+    @staticmethod
+    def validate_password(password):
+        if not isinstance(password, str) :
+            raise TypeError('Password must be a string')
+        elif not re.match('^[A-Za-z0-9]{4,20}$',password):
+            raise ValueError('Password must be a valid password (A-Z,a-z,0-9)')
