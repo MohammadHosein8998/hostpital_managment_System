@@ -60,4 +60,6 @@ class PatientDataAccess:
         self.__patient_list = pickle.load(file)
         file.close()
         patient = list(filter( lambda x : x.national_code == national_code, self.__patient_list))
+        if not patient:
+            raise ValueError("there is no patient with this national code in database")
         return patient[0]
