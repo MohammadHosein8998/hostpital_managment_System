@@ -1,7 +1,7 @@
 from datetime import date
 
 import jdatetime
-from persian_tools import phone_number , national_id
+from persian_tools import national_id
 
 from model.user import User
 from validation.patient_validation import PatientValidation
@@ -61,7 +61,7 @@ class Patient(User):
             "patient_id": 7,
             "name": "hossein",
             "family": "moradi",
-            "national_code":national_id.generate_random(),
+            "national_code": national_id.generate_random(),
             "birth_date": date(1997, 9, 18),
             "phone_number": "09123456786"
         },
@@ -90,10 +90,12 @@ class Patient(User):
             "phone_number": "09123456789"
         }
     ]
-    def __init__(self, patient_id, name, family, national_code, birth_date, phone_number):
+
+    def __init__(self, patient_id, name, family, national_code, birth_date, phone_number, password):
         super().__init__(name, family, national_code, birth_date)
         self.patient_id = patient_id
         self.phone_number = phone_number
+        self.password = password
 
     @property
     def patient_id(self):
@@ -112,14 +114,17 @@ class Patient(User):
         PatientValidation.validate_phone_number(value)
         self.__phone_number = value
 
+    @property
+    def password(self):
+        return self.__password
+
+    @password.setter
+    def password(self, value):
+        PatientValidation.validate_password(value)
+        self.__password = value
+
     def __repr__(self) -> str:
         return f"Patient( patient_id : {self.patient_id} , phone_number : {self.phone_number} , name : {self.name}, family : {self.family}, national_code : {self.national_code} , birth_date : {self.birth_date} )"
-
-    def enableUser(self):
-        print(f"user {self.name} enabled")
-
-    def disableUser(self):
-        print(f"user {self.name} disabled")
 
     def __eq__(self, other: Patient) -> bool:
         if not isinstance(other, Patient):
@@ -132,32 +137,39 @@ class Patient(User):
                 and self.national_code == other.national_code
                 and self.birth_date == other.birth_date
                 and self.phone_number == other.phone_number
+                and self.password == other.password
         )
 
     @classmethod
-    def make_sample(cls , dic_sample = None):
+    def make_sample(cls, dic_sample=None):
         if dic_sample is None:
-            return cls(1, "mohammad hosein", "ghasemi", "0022613013", date(2020, 5, 8), "09026464308")
+            return cls(1, "mohammad hosein", "ghasemi", "0022613013", date(2020, 5, 8), "09026464308" , "Abcd1234")
         else:
-            return cls(dic_sample["patient_id"] , dic_sample["name"] , dic_sample["family"] , dic_sample["national_code"] , dic_sample["birth_date"] , dic_sample["phone_number"])
+            return cls(dic_sample["patient_id"], dic_sample["name"], dic_sample["family"], dic_sample["national_code"],
+                       dic_sample["birth_date"], dic_sample["phone_number"] , dic_sample["password"])
 
     @classmethod
     def make_samples(cls):
-        cls_samples = list(map( cls.make_sample, cls.samples))
+        cls_samples = list(map(cls.make_sample, cls.samples))
         return cls_samples
 
     def values(self):
 
         persian_birth_date = jdatetime.datetime.fromgregorian(date=self.birth_date)
 
-        string_persian = jdatetime.datetime.strftime(persian_birth_date , "%Y-%m-%d")
-
+        string_persian = jdatetime.datetime.strftime(persian_birth_date, "%Y-%m-%d")
 
         return (
             self.patient_id,
             self.name,
             self.family,
             self.national_code,
-             string_persian,
-            self.phone_number
+            string_persian,
+            self.phone_number,
+            self.password
         )
+
+    def login(self , password : str):
+        if self.password == password:
+            return True
+        return False
