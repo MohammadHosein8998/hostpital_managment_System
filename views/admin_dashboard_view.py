@@ -5,7 +5,7 @@ from model.user import User
 from model.view import View
 
 
-class DashboardView(View):
+class AdminDashboardView(View):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
