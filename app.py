@@ -1,16 +1,17 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
-from views.login_admin_view import LoginAdminView
-from views.login_patient_view import LoginPatientView
-from views.dashboard_view import DashboardView
+from views.admin_login_view import AdminLoginView
+from views.patient_login_view import PatientLoginView
+from views.admin_dashboard_view import AdminDashboardView
 from views.patient_view import PatientView
 from views.physician_view import PhysicianView
 from views.appointment_view import AppointmentView
 from views.login_view import LoginView
 from views.sign_up_view import SignUpView
 from views.admin_info_view import AdminInfoView
-
+from views.patient_dashboard_view import PatientDashboardView
+from views.patient_Info_View import PatientInfoView
 
 class App(tk.Tk):
 
@@ -31,8 +32,8 @@ class App(tk.Tk):
         container = ttk.Frame(self)
         container.pack(fill="both", expand=True)
 
-        for PageClass in (LoginView, LoginAdminView, LoginPatientView, SignUpView, DashboardView, PatientView,
-                          PhysicianView, AppointmentView, AdminInfoView):
+        for PageClass in (LoginView, AdminLoginView, PatientLoginView, SignUpView, AdminDashboardView, PatientView,
+                          PhysicianView, AppointmentView, AdminInfoView, PatientDashboardView , PatientInfoView):
             page = PageClass(container, self)
 
             self.frame[PageClass.__name__] = page
