@@ -54,9 +54,8 @@ class PatientController:
         return f"patient with national code {patient.national_code} deleted successfully."
 
     @Error_handler
-    def find_by_national_code(self, patient_data):
-        patient = self.__make_new_patient(patient_data)
-        self.__patient_service.get_patient_by_national_code(patient.national_code)
+    def find_by_national_code(self, national_code):
+        patient = self.__patient_service.get_patient_by_national_code(national_code)
         return patient
 
     @Error_handler
