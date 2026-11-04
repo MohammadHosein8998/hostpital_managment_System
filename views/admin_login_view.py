@@ -7,7 +7,7 @@ from model.view import View
 
 
 
-class LoginAdminView(View):
+class AdminLoginView(View):
     def __init__(self, parent, controller):
         super().__init__(parent , controller)
 
@@ -54,7 +54,7 @@ class LoginAdminView(View):
         success , response = self.__admin_c.login(username, password)
         if success:
             success , self.controller.current_user = self.__admin_c.find_admin_by_user_name(username)
-            self.controller.show_frame("DashboardView")
+            self.controller.show_frame("AdminDashboardView")
         else:
             self.error_label.config(
                 text=response,
