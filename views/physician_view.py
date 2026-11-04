@@ -77,7 +77,7 @@ class PhysicianView(View):
         ttk.Button(
             self,
             text="Back to Dashboard",
-            command=lambda: controller.show_frame("DashboardView")
+            command=lambda: controller.show_frame("AdminDashboardView")
         ).place(x=10, y=350)
 
         self.draw_button(text="save", x=20, y=280, command=self.save_physician)
