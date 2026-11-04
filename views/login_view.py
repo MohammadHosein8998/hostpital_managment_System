@@ -1,7 +1,7 @@
 from tkinter import ttk
 
 from model.view import View
-from views.login_admin_view import LoginAdminView
+
 
 
 class LoginView(View):
@@ -28,7 +28,7 @@ class LoginView(View):
         ).pack(ipadx=50, padx=200, pady=20)
 
     def __show_admin_login(self):
-        self.controller.show_frame("LoginAdminView")
+        self.controller.show_frame("AdminLoginView")
 
     def __show_patient_login(self):
-        self.controller.show_frame("LoginPatientView")
+        self.controller.show_frame("PatientLoginView")
