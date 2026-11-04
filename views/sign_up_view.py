@@ -34,8 +34,8 @@ class SignUpView(View):
         success , message = self.patient_c.save(patient)
         if success:
             self.reset_form()
-            self.controller.show_frame("LoginPatientView")
+            self.controller.show_frame("PatientLoginView")
         self.show_message_box(success , message)
 
     def __back(self):
-        self.controller.show_frame("LoginPatientView")
+        self.controller.show_frame("PatientLoginView")
