@@ -5,7 +5,7 @@ from model.user import User
 from model.view import View
 
 
-class LoginPatientView(View):
+class PatientLoginView(View):
 
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
@@ -42,13 +42,13 @@ class LoginPatientView(View):
             self,
             text="sign up",
             command=self.sign_up
-        ).place(x=1000 , y=120)
+        ).place(x=1000, y=120)
 
         ttk.Button(
             self,
             text="back",
-            command= self.__back
-        ).place(x=150 , y=120)
+            command=self.__back
+        ).place(x=150, y=120)
 
         self.error_label = ttk.Label(self, text="")
         self.error_label.pack()
@@ -56,17 +56,17 @@ class LoginPatientView(View):
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-        success , respond = self.patient_c.login(username , password)
+        success, respond = self.patient_c.login(username, password)
         if success:
-            self.controller.show_frame("DashboardView")
-            self.show_message_box(success , respond)
+            success, self.controller.current_user = self.patient_c.find_by_national_code(username)
+            self.show_message_box(success, respond)
+            self.controller.show_frame("PatientDashboardView")
         else:
             self.error_label.config(
                 text=respond,
                 background="red",
                 font=("Arial", 10)
             )
-
 
     def __back(self):
         self.controller.show_frame("LoginView")
