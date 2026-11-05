@@ -34,7 +34,7 @@ class PatientDashboardView(View):
         ).pack(pady=30)
 
     def make_appointment(self):
-        pass
+        self.controller.show_frame("PatientMakeAppointmentView")
 
     def patient_info(self):
         self.controller.show_frame("PatientInfoView")
