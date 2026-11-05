@@ -12,6 +12,8 @@ from views.sign_up_view import SignUpView
 from views.admin_info_view import AdminInfoView
 from views.patient_dashboard_view import PatientDashboardView
 from views.patient_Info_View import PatientInfoView
+from views.patient_make_appointment_view import PatientMakeAppointmentView
+
 
 class App(tk.Tk):
 
@@ -33,7 +35,8 @@ class App(tk.Tk):
         container.pack(fill="both", expand=True)
 
         for PageClass in (LoginView, AdminLoginView, PatientLoginView, SignUpView, AdminDashboardView, PatientView,
-                          PhysicianView, AppointmentView, AdminInfoView, PatientDashboardView , PatientInfoView):
+                          PhysicianView, AppointmentView, AdminInfoView, PatientDashboardView, PatientInfoView,
+                          PatientMakeAppointmentView):
             page = PageClass(container, self)
 
             self.frame[PageClass.__name__] = page
@@ -45,6 +48,7 @@ class App(tk.Tk):
         container.columnconfigure(0, weight=1)
 
         self.show_frame("LoginView")
+        # self.show_frame("PatientMakeAppointmentView")
 
     def show_frame(self, page_name):
         """نمایش صفحه موردنظر"""
