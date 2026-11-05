@@ -26,8 +26,9 @@ class AppointmentView(View):
     def select_appointment(self, event_info):
         row_id = self.appointment_table.focus()
         selected_item = list(self.appointment_table.item(row_id, "values"))
-        self.appointment_id.set(selected_item[0])
-        selected_item.pop(0)
+        if selected_item:
+            self.appointment_id.set(selected_item[0])
+            selected_item.pop(0)
         self.set_selected_values(selected_item)
 
     def save_appointment(self) -> None:
