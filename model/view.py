@@ -23,6 +23,12 @@ class View(ttk.Frame):
         ttk.Entry(self, textvariable=var_label).place(x=x + 100, y=y)
         self.var_dic[text] = var_label
 
+    def draw_locked_input(self, text: str = "default", x: int = 20, y: int = 20):
+        var_label = StringVar()
+        ttk.Label(self, text=str(text)).place(x=x, y=y)
+        ttk.Label(self, textvariable=var_label).place(x=x + 100, y=y)
+        self.var_dic[text] = var_label
+
     def draw_button(self, command, text="default", width: int = 7, x: int = 20, y: int = 20):
         ttk.Button(self, text=str(text), width=width, command=command).place(x=x, y=y)
 
@@ -51,3 +57,6 @@ class View(ttk.Frame):
         edited_item = list(self.var_dic.keys()).copy()
         for key, value in zip(edited_item, selected_item):
             self.var_dic[key].set(value)
+
+    def set_selected_value(self, label, value):
+        self.var_dic[label].set(value)
