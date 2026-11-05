@@ -17,8 +17,8 @@ class AppointmentController:
 
         milady_date = jdatetime.datetime.strptime(date, '%Y-%m-%d').date().togregorian()
         AppointmentController.appointment_id += 1
-        miladay_time = jdatetime.time.strptime(time , "%H:%M:%S")
-        new_appointment = Appointment(AppointmentController.appointment_id, int(physician_id), int(patient_id), milady_date, miladay_time)
+        milady_time = jdatetime.time.strptime(time , "%H:%M:%S")
+        new_appointment = Appointment(AppointmentController.appointment_id, int(physician_id), int(patient_id), milady_date, milady_time)
 
         return new_appointment
 
